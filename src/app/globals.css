@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --text: 17 15 26;
+  --background: 242 241 248;
+  --primary: 108 80 180;
+  --secondary: 173 154 219;
+  --accent: 141 113 214;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --text: 231 229 240;
+  --background: 8 7 14;
+  --primary: 103 75 175;
+  --secondary: 56 36 101;
+  --accent: 70 41 142;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility bg-background {
+  background-color: rgb(var(--background));
+}
+
+@utility text-text {
+  color: rgb(var(--text));
+}
+
+@layer base {
+  * {
+    border-color: rgb(var(--primary) / 0.2);
+  }
+  
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--text));
+    font-family: 'Mingzat', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Mingzat', sans-serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--primary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--accent));
 }

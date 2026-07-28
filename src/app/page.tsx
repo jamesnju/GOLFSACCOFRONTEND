@@ -1,65 +1,128 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { motion } from 'framer-motion';
+
+export default function LandingPage() {
+  const { data: session } = useSession();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="min-h-screen flex flex-col bg-background text-text">
+      {/* Navigation */}
+      <nav className="flex items-center justify-between px-8 py-4 border-b border-primary/20">
+        <div className="flex items-center gap-2">
+          <span className="text-3xl font-bold text-primary">⛳</span>
+          <span className="text-2xl font-heading text-text">Golf SACCO</span>
+        </div>
+        <div className="flex items-center gap-4">
+          {session ? (
+            <Link
+              href="/dashboard"
+              className="px-6 py-2 bg-primary text-background rounded-lg hover:bg-accent transition-colors"
+            >
+              Dashboard
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="px-6 py-2 text-primary hover:text-accent transition-colors"
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                className="px-6 py-2 bg-primary text-background rounded-lg hover:bg-accent transition-colors"
+              >
+                Register
+              </Link>
+            </>
+          )}
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="flex-1 flex flex-col items-center justify-center px-4 py-20 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl"
+        >
+          <h1 className="text-5xl md:text-6xl font-heading font-bold mb-6">
+            <span className="text-primary">Golf</span> Club
+            <br />
+            <span className="text-text">Savings & Credit</span> Cooperative
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-xl text-text/90 mb-8 max-w-2xl mx-auto">
+            Save, grow your money, and access loans for your golfing needs.
+            Join the premium SACCO for golf enthusiasts.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link
+              href="/register"
+              className="px-8 py-3 bg-primary text-background rounded-lg hover:bg-accent transition-colors text-lg"
+            >
+              Get Started
+            </Link>
+            <Link
+              href="#features"
+              className="px-8 py-3 border border-primary text-primary rounded-lg hover:bg-primary/10 transition-colors text-lg"
+            >
+              Learn More
+            </Link>
+          </div>
+        </motion.div>
+
+        {/* Features */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mt-16 w-full"
+          id="features"
+        >
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="p-6 rounded-lg border border-primary/20 bg-background hover:bg-primary/5 transition-colors"
+            >
+              <div className="text-4xl mb-4">{feature.icon}</div>
+              <h3 className="text-lg font-bold text-text mb-2">{feature.title}</h3>
+              <p className="text-text/80 text-sm">{feature.description}</p>
+            </div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-primary/20 py-6 text-center text-text/70 text-sm">
+        <p>&copy; {new Date().getFullYear()} Golf Club SACCO. All rights reserved.</p>
+      </footer>
+    </main>
   );
 }
+
+const features = [
+  {
+    icon: '💰',
+    title: 'Easy Savings',
+    description: 'Deposit and grow your savings with competitive returns.',
+  },
+  {
+    icon: '🏦',
+    title: 'Quick Loans',
+    description: 'Access loans up to 3x your savings after 6 months.',
+  },
+  {
+    icon: '📊',
+    title: 'Real-time Tracking',
+    description: 'Monitor your savings, loans, and transactions instantly.',
+  },
+  {
+    icon: '🛡️',
+    title: 'Secure Platform',
+    description: 'Your money and data are protected with enterprise-grade security.',
+  },
+];
