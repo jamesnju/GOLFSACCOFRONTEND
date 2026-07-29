@@ -1,19 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --text: 1 19 1;
-  --background: 241 254 242;
-  --primary: 28 242 43;
-  --secondary: 120 122 247;
-  --accent: 201 72 244;
+  /* 🌞 Light Mode Theme - Fresh & Vibrant */
+  --text: 1 19 1;          /* Deep forest green-black - main text color */
+  --background: 241 254 242; /* Soft minty white - page background */
+  --primary: 28 242 43;     /* Electric neon green - main brand color, buttons, links */
+  --secondary: 120 122 247; /* Gentle periwinkle blue - secondary elements, accents */
+  --accent: 201 72 244;     /* Bold magenta-purple - highlights, CTAs, special elements */
 }
 
 .dark {
-  --text: 254 254 254;
-  --background: 1 19 1;
-  --primary: 28 242 43;
-  --secondary: 120 122 247;
-  --accent: 201 72 244;
+  /* 🌙 Dark Mode Theme - Same Vibrant Accents on Dark Canvas */
+  --text: 254 254 254;     /* Crisp white - text on dark backgrounds */
+  --background: 1 19 1;    /* Deep forest green-black - dark mode background */
+  --primary: 28 242 43;     /* Electric neon green - maintains brand consistency */
+  --secondary: 120 122 247; /* Periwinkle blue - maintains brand consistency */
+  --accent: 201 72 244;     /* Bold magenta-purple - maintains brand consistency */
 }
 
 @utility bg-background {

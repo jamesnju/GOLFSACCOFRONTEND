@@ -205,222 +205,228 @@ export default function LandingPage() {
 
       {/* Hero Section with Background Image */}
       <section
-        ref={heroRef}
-        className="relative min-h-screen flex items-center pt-20 overflow-hidden"
-      >
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/golf-hero-bg.png"
-            alt="Golf Course Background"
-            fill
-            className="object-cover"
-            priority
-          />
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/80 to-background/70" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/95 to-transparent" />
-        </div>
+  ref={heroRef}
+  className="relative min-h-screen flex items-center pt-20 overflow-hidden"
+>
+  {/* Background Image - More visible with less overlay */}
+  <div className="absolute inset-0 z-0">
+    <Image
+      src="/images/golf-hero-bg.png"
+      alt="Golf Course Background"
+      fill
+      className="object-cover"
+      priority
+    />
+    {/* Much lighter overlays to show background image clearly */}
+    <div className="absolute inset-0 bg-gradient-to-br from-[rgb(var(--background))]/30 via-[rgb(var(--background))]/20 to-[rgb(var(--background))]/10" />
+    <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--background))]/60 to-transparent" />
+  </div>
 
-        {/* Floating Particles */}
-        <FloatingParticles />
+  {/* Floating Particles */}
+  <FloatingParticles />
 
-        {/* Animated Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-accent/10 animate-pulse" />
+  {/* Subtle Animated Gradient Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-r from-[rgb(var(--primary))]/5 via-transparent to-[rgb(var(--accent))]/5 animate-pulse" />
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial="hidden"
-            animate={heroInView ? 'visible' : 'hidden'}
-            variants={fadeInUp}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <motion.div
+      initial="hidden"
+      animate={heroInView ? 'visible' : 'hidden'}
+      variants={fadeInUp}
+      className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
+    >
+      {/* Left Content - Reduced text sizes */}
+      <div className="space-y-5">
+        <motion.div
+          variants={fadeInUp}
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[rgb(var(--background))]/40 backdrop-blur-md border border-[rgb(var(--primary))]/30 shadow-lg shadow-[rgb(var(--primary))]/10"
+        >
+          <SparklesIcon className="w-3 h-3 text-[rgb(var(--primary))] animate-pulse" />
+          <span className="text-xs font-medium text-[rgb(var(--text))]">🚀 Premium Golf SACCO</span>
+        </motion.div>
+
+        <motion.h1
+          variants={fadeInUp}
+          className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-tight text-[rgb(var(--text))] drop-shadow-lg"
+        >
+          Empower Your{' '}
+          <span className="bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] bg-clip-text text-transparent">
+            Golfing Journey
+          </span>
+          {' '}with Smart Savings
+        </motion.h1>
+
+        <motion.p
+          variants={fadeInUp}
+          className="text-sm sm:text-base text-[rgb(var(--text))]/90 leading-relaxed max-w-lg backdrop-blur-md bg-[rgb(var(--background))]/20 p-3 rounded-xl border border-[rgb(var(--primary))]/20 shadow-lg"
+        >
+          Join the premier Savings and Credit Cooperative for golf enthusiasts. 
+          Save, grow your money, and access loans for your golfing needs.
+        </motion.p>
+
+        <motion.div
+          variants={fadeInUp}
+          className="flex flex-wrap gap-3"
+        >
+          <Link
+            href="/register"
+            className="group px-6 py-2.5 bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] text-[rgb(var(--background))] rounded-lg hover:shadow-2xl hover:shadow-[rgb(var(--primary))]/40 transition-all duration-300 font-medium text-sm flex items-center gap-2"
           >
-            {/* Left Content */}
-            <div className="space-y-8">
-              <motion.div
-                variants={fadeInUp}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 backdrop-blur-sm border border-primary/30"
-              >
-                <SparklesIcon className="w-4 h-4 text-primary animate-pulse" />
-                <span className="text-sm font-medium text-text">🚀 Premium Golf SACCO</span>
-              </motion.div>
+            Get Started
+            <ArrowRightIcon className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link
+            href="#features"
+            className="px-6 py-2.5 border-2 border-[rgb(var(--primary))]/40 text-[rgb(var(--text))] rounded-lg hover:bg-[rgb(var(--primary))]/20 backdrop-blur-md transition-all duration-200 font-medium text-sm"
+          >
+            Learn More
+          </Link>
+        </motion.div>
 
-              <motion.h1
-                variants={fadeInUp}
-                className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold leading-tight text-text"
-              >
-                Empower Your{' '}
-                <span className="text-primary bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Golfing Journey
-                </span>
-                {' '}with Smart Savings
-              </motion.h1>
+        <motion.div
+          variants={fadeInUp}
+          className="flex flex-wrap items-center gap-4 pt-2"
+        >
+          <div className="flex items-center gap-1.5 bg-[rgb(var(--background))]/30 backdrop-blur-md px-2.5 py-1 rounded-full border border-[rgb(var(--primary))]/20 shadow-lg">
+            <ShieldCheckIcon className="w-3 h-3 text-[rgb(var(--primary))]" />
+            <span className="text-[10px] text-[rgb(var(--text))]/80">Secure & Trusted</span>
+          </div>
+          <div className="flex items-center gap-1.5 bg-[rgb(var(--background))]/30 backdrop-blur-md px-2.5 py-1 rounded-full border border-[rgb(var(--primary))]/20 shadow-lg">
+            <ClockIcon className="w-3 h-3 text-[rgb(var(--primary))]" />
+            <span className="text-[10px] text-[rgb(var(--text))]/80">24/7 Access</span>
+          </div>
+          <div className="flex items-center gap-1.5 bg-[rgb(var(--background))]/30 backdrop-blur-md px-2.5 py-1 rounded-full border border-[rgb(var(--primary))]/20 shadow-lg">
+            <UsersIcon className="w-3 h-3 text-[rgb(var(--primary))]" />
+            <span className="text-[10px] text-[rgb(var(--text))]/80">Community</span>
+          </div>
+        </motion.div>
+      </div>
 
-              <motion.p
-                variants={fadeInUp}
-                className="text-lg text-text/70 leading-relaxed max-w-lg backdrop-blur-sm bg-background/20 p-4 rounded-xl border border-primary/10"
-              >
-                Join the premier Savings and Credit Cooperative for golf enthusiasts. 
-                Save, grow your money, and access loans for your golfing needs.
-              </motion.p>
-
-              <motion.div
-                variants={fadeInUp}
-                className="flex flex-wrap gap-4"
-              >
-                <Link
-                  href="/register"
-                  className="group px-8 py-3 bg-gradient-to-r from-primary to-accent text-background rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 font-medium flex items-center gap-2"
-                >
-                  Get Started
-                  <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link
-                  href="#features"
-                  className="px-8 py-3 border border-primary/40 text-text rounded-lg hover:bg-primary/10 backdrop-blur-sm transition-all duration-200 font-medium"
-                >
-                  Learn More
-                </Link>
-              </motion.div>
-
-              <motion.div
-                variants={fadeInUp}
-                className="flex flex-wrap items-center gap-6 pt-4"
-              >
-                <div className="flex items-center gap-2 bg-background/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-primary/10">
-                  <ShieldCheckIcon className="w-4 h-4 text-primary" />
-                  <span className="text-xs text-text/70">Secure & Trusted</span>
+      {/* Right Content - Hero Stats with smaller sizes */}
+      <motion.div
+        variants={fadeInUp}
+        className="relative"
+      >
+        <div className="grid grid-cols-2 gap-3">
+          <motion.div
+            whileHover={{ scale: 1.05, rotate: -1 }}
+            className="col-span-2 p-4 rounded-2xl bg-[rgb(var(--background))]/25 backdrop-blur-xl border-2 border-[rgb(var(--primary))]/40 shadow-2xl shadow-[rgb(var(--primary))]/10 hover:shadow-[rgb(var(--primary))]/30 transition-all duration-300"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs text-[rgb(var(--text))]/70">Total Savings</p>
+                <div className="text-2xl font-bold text-[rgb(var(--text))]">
+                  <AnimatedCounter target={2500000} prefix="KES " duration={2500} />
                 </div>
-                <div className="flex items-center gap-2 bg-background/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-primary/10">
-                  <ClockIcon className="w-4 h-4 text-primary" />
-                  <span className="text-xs text-text/70">24/7 Access</span>
+              </div>
+              <div className="w-10 h-10 rounded-xl bg-[rgb(var(--primary))]/20 flex items-center justify-center border border-[rgb(var(--primary))]/30 backdrop-blur-sm">
+                <WalletIcon className="w-5 h-5 text-[rgb(var(--primary))]" />
+              </div>
+            </div>
+            <div className="mt-2 w-full h-1.5 bg-[rgb(var(--background))]/20 rounded-full overflow-hidden">
+              <motion.div 
+                className="h-full bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: '75%' }}
+                transition={{ duration: 2, delay: 0.5 }}
+              />
+            </div>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ scale: 1.05, rotate: 1 }}
+            className="p-3 rounded-2xl bg-[rgb(var(--background))]/25 backdrop-blur-xl border-2 border-[rgb(var(--accent))]/40 shadow-2xl shadow-[rgb(var(--accent))]/10 hover:shadow-[rgb(var(--accent))]/30 transition-all duration-300"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-[10px] text-[rgb(var(--text))]/70">Active Loans</p>
+                <div className="text-xl font-bold text-[rgb(var(--text))]">
+                  <AnimatedCounter target={45} duration={2000} />
                 </div>
-                <div className="flex items-center gap-2 bg-background/20 backdrop-blur-sm px-3 py-1.5 rounded-full border border-primary/10">
-                  <UsersIcon className="w-4 h-4 text-primary" />
-                  <span className="text-xs text-text/70">Community</span>
+              </div>
+              <div className="w-8 h-8 rounded-xl bg-[rgb(var(--accent))]/20 flex items-center justify-center border border-[rgb(var(--accent))]/30 backdrop-blur-sm">
+                <DocumentTextIcon className="w-4 h-4 text-[rgb(var(--accent))]" />
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ scale: 1.05, rotate: -1 }}
+            className="p-3 rounded-2xl bg-[rgb(var(--background))]/25 backdrop-blur-xl border-2 border-[rgb(var(--primary))]/40 shadow-2xl shadow-[rgb(var(--primary))]/10 hover:shadow-[rgb(var(--primary))]/30 transition-all duration-300"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-[10px] text-[rgb(var(--text))]/70">Members</p>
+                <div className="text-xl font-bold text-[rgb(var(--text))]">
+                  <AnimatedCounter target={150} suffix="+" duration={2000} />
                 </div>
+              </div>
+              <div className="w-8 h-8 rounded-xl bg-[rgb(var(--primary))]/20 flex items-center justify-center border border-[rgb(var(--primary))]/30 backdrop-blur-sm">
+                <UserGroupIcon className="w-4 h-4 text-[rgb(var(--primary))]" />
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="col-span-2 p-3 rounded-2xl bg-gradient-to-r from-[rgb(var(--primary))]/20 to-[rgb(var(--accent))]/20 backdrop-blur-xl border-2 border-[rgb(var(--primary))]/30 shadow-2xl shadow-[rgb(var(--primary))]/10"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-xl bg-[rgb(var(--primary))]/30 flex items-center justify-center border border-[rgb(var(--primary))]/20 backdrop-blur-sm">
+                <TrophyIcon className="w-4 h-4 text-[rgb(var(--text))]" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-[rgb(var(--text))]">
+                  Join <AnimatedCounter target={150} suffix="+" duration={2000} /> Golfers
+                </p>
+                <p className="text-[10px] text-[rgb(var(--text))]/60">Start saving today</p>
+              </div>
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                className="ml-auto"
+              >
+                <ArrowPathIcon className="w-4 h-4 text-[rgb(var(--primary))]/60" />
               </motion.div>
             </div>
-
-            {/* Right Content - Hero Stats */}
-            <motion.div
-              variants={fadeInUp}
-              className="relative"
-            >
-              <div className="grid grid-cols-2 gap-4">
-                <motion.div
-                  whileHover={{ scale: 1.05, rotate: -1 }}
-                  className="col-span-2 p-6 rounded-2xl bg-background/30 backdrop-blur-xl border border-primary/30 shadow-xl shadow-primary/5"
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-text/60">Total Savings</p>
-                      <AnimatedCounter target={2500000} prefix="KES " duration={2500} />
-                    </div>
-                    <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                      <WalletIcon className="w-6 h-6 text-primary" />
-                    </div>
-                  </div>
-                  <div className="mt-2 w-full h-2 bg-background/20 rounded-full overflow-hidden">
-                    <motion.div 
-                      className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
-                      initial={{ width: 0 }}
-                      animate={{ width: '75%' }}
-                      transition={{ duration: 2, delay: 0.5 }}
-                    />
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.05, rotate: 1 }}
-                  className="p-4 rounded-2xl bg-background/30 backdrop-blur-xl border border-accent/30 shadow-xl shadow-accent/5"
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs text-text/60">Active Loans</p>
-                      <AnimatedCounter target={45} duration={2000} />
-                    </div>
-                    <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
-                      <DocumentTextIcon className="w-5 h-5 text-accent" />
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.05, rotate: -1 }}
-                  className="p-4 rounded-2xl bg-background/30 backdrop-blur-xl border border-primary/30 shadow-xl shadow-primary/5"
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs text-text/60">Members</p>
-                      <AnimatedCounter target={150} suffix="+" duration={2000} />
-                    </div>
-                    <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
-                      <UserGroupIcon className="w-5 h-5 text-primary" />
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="col-span-2 p-4 rounded-2xl bg-gradient-to-r from-primary/20 to-accent/20 backdrop-blur-xl border border-primary/30"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-primary/30 flex items-center justify-center">
-                      <TrophyIcon className="w-5 h-5 text-text" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-text">
-                        Join <AnimatedCounter target={150} suffix="+" duration={2000} /> Golfers
-                      </p>
-                      <p className="text-xs text-text/50">Start saving today</p>
-                    </div>
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                      className="ml-auto"
-                    >
-                      <ArrowPathIcon className="w-5 h-5 text-primary/40" />
-                    </motion.div>
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Floating Badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-                className="absolute -top-4 -right-4 lg:top-0 lg:-right-8 bg-primary text-background px-4 py-2 rounded-full shadow-lg shadow-primary/30 flex items-center gap-2"
-              >
-                <StarIcon className="w-4 h-4 animate-pulse" />
-                <span className="text-xs font-bold">⭐ 5 Star Rated</span>
-              </motion.div>
-            </motion.div>
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Floating Badge - Smaller */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="absolute -top-3 -right-3 lg:top-0 lg:-right-6 bg-gradient-to-r from-[rgb(var(--primary))] to-[rgb(var(--accent))] text-[rgb(var(--background))] px-3 py-1.5 rounded-full shadow-2xl shadow-[rgb(var(--primary))]/50 flex items-center gap-1.5 border-2 border-[rgb(var(--background))]/20"
         >
-          <span className="text-xs text-text/40">Scroll to explore</span>
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center"
-          >
-            <motion.div
-              animate={{ y: [2, 14, 2] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1.5 h-3 bg-primary/50 rounded-full mt-2"
-            />
-          </motion.div>
+          <StarIcon className="w-3 h-3 animate-pulse" />
+          <span className="text-[10px] font-bold">⭐ 5 Star Rated</span>
         </motion.div>
-      </section>
+      </motion.div>
+    </motion.div>
+  </div>
+
+  {/* Scroll Indicator - Smaller */}
+  <motion.div
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 1, duration: 0.5 }}
+    className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-10"
+  >
+    <span className="text-[10px] text-[rgb(var(--text))]/60 backdrop-blur-sm bg-[rgb(var(--background))]/20 px-2.5 py-0.5 rounded-full">Scroll to explore</span>
+    <motion.div
+      animate={{ y: [0, 8, 0] }}
+      transition={{ duration: 2, repeat: Infinity }}
+      className="w-5 h-8 border-2 border-[rgb(var(--primary))]/40 rounded-full flex justify-center bg-[rgb(var(--background))]/20 backdrop-blur-sm shadow-lg"
+    >
+      <motion.div
+        animate={{ y: [2, 10, 2] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="w-1 h-2.5 bg-[rgb(var(--primary))] rounded-full mt-2"
+      />
+    </motion.div>
+  </motion.div>
+</section>
 
       {/* Features Section */}
       <section
