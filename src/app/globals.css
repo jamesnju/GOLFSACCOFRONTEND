@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --text: 17 15 26;
-  --background: 242 241 248;
-  --primary: 108 80 180;
-  --secondary: 173 154 219;
-  --accent: 141 113 214;
+  --text: 1 19 1;
+  --background: 241 254 242;
+  --primary: 28 242 43;
+  --secondary: 120 122 247;
+  --accent: 201 72 244;
 }
 
 .dark {
-  --text: 231 229 240;
-  --background: 8 7 14;
-  --primary: 103 75 175;
-  --secondary: 56 36 101;
-  --accent: 70 41 142;
+  --text: 254 254 254;
+  --background: 1 19 1;
+  --primary: 28 242 43;
+  --secondary: 120 122 247;
+  --accent: 201 72 244;
 }
 
 @utility bg-background {
@@ -40,6 +40,7 @@
   }
 }
 
+/* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -55,4 +56,73 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(var(--accent));
+}
+
+/* Selection Color */
+::selection {
+  background: rgb(var(--primary));
+  color: rgb(var(--background));
+}
+
+/* Focus Ring */
+*:focus-visible {
+  outline: 2px solid rgb(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Custom Utility Classes */
+@layer utilities {
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, rgb(var(--primary)), rgb(var(--accent)));
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, rgb(var(--primary)), rgb(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .border-primary\/20 {
+    border-color: rgb(var(--primary) / 0.2);
+  }
+  
+  .border-primary\/10 {
+    border-color: rgb(var(--primary) / 0.1);
+  }
+  
+  .bg-primary\/10 {
+    background-color: rgb(var(--primary) / 0.1);
+  }
+  
+  .bg-primary\/20 {
+    background-color: rgb(var(--primary) / 0.2);
+  }
+  
+  .bg-primary\/5 {
+    background-color: rgb(var(--primary) / 0.05);
+  }
+  
+  .hover\:bg-primary\/20:hover {
+    background-color: rgb(var(--primary) / 0.2);
+  }
+  
+  .hover\:bg-primary\/10:hover {
+    background-color: rgb(var(--primary) / 0.1);
+  }
+  
+  .hover\:bg-primary\/80:hover {
+    background-color: rgb(var(--primary) / 0.8);
+  }
+  
+  .text-primary\/60 {
+    color: rgb(var(--primary) / 0.6);
+  }
+  
+  .text-primary\/40 {
+    color: rgb(var(--primary) / 0.4);
+  }
+  
+  .text-primary\/80 {
+    color: rgb(var(--primary) / 0.8);
+  }
 }

@@ -12,6 +12,9 @@ declare module 'next-auth' {
       lastName: string;
       role: string;
       isActive: boolean;
+      phone?: string;
+      joinDate?: string;
+      registrationFeePaid?: boolean;
       wallet?: {
         balance: number;
         lockedBalance: number;
@@ -24,6 +27,9 @@ declare module 'next-auth' {
     lastName: string;
     role: string;
     isActive: boolean;
+    phone?: string;
+    joinDate?: string;
+    registrationFeePaid?: boolean;
     accessToken: string;
     refreshToken: string;
     wallet?: {
@@ -45,6 +51,9 @@ declare module 'next-auth/jwt' {
       lastName: string;
       role: string;
       isActive: boolean;
+      phone?: string;
+      joinDate?: string;
+      registrationFeePaid?: boolean;
       wallet?: {
         balance: number;
         lockedBalance: number;

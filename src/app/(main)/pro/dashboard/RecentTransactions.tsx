@@ -1,25 +1,17 @@
-'use client';
+import { formatCurrency, formatDate } from '@/lib/utils/helpers';
+import { cn } from '@/lib/utils/helpers';
 
-import { formatCurrency, formatDate, cn } from '@/lib/utils/helpers';
-
-interface Transaction {
-  id: string;
-  type: string;
-  amount: number;
-  description?: string;
-  status: string;
-  createdAt: string;
-  [key: string]: any;
-}
-
-export function RecentTransactions({ transactions }: { transactions: Transaction[] }) {
-  if (!transactions || transactions.length === 0) {
+async function RecentTransactions() {
+  const { getTransactionHistory } = await import('@/lib/actions/transaction.actions');
+  const result = await getTransactionHistory({ limit: 5 });
+  
+  if (!result.success || !result.data?.transactions?.length) {
     return <p className="text-text/60 text-sm">No recent transactions</p>;
   }
 
   return (
     <div className="space-y-3">
-      {transactions.slice(0, 5).map((tx: Transaction) => (
+      {result.data.transactions.map((tx: any) => (
         <div key={tx.id} className="flex items-center justify-between p-3 rounded-lg bg-primary/5">
           <div>
             <p className="text-sm font-medium">{tx.description || tx.type}</p>
@@ -39,3 +31,5 @@ export function RecentTransactions({ transactions }: { transactions: Transaction
     </div>
   );
 }
+
+export default RecentTransactions;
