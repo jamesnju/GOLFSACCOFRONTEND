@@ -2,8 +2,8 @@
 
 import { getServerSession } from 'next-auth';
 import { authConfig } from '@/lib/auth/auth.config';
+import { paymentApi } from '@/lib/api/payment';
 import { revalidateTag, revalidatePath } from 'next/cache';
-import { paymentApi } from '../api/payment';
 
 export async function initiatePayment(data: {
   phoneNumber: string;
@@ -17,9 +17,24 @@ export async function initiatePayment(data: {
     }
 
     const result = await paymentApi.initiate(data);
-    return { success: true, data: result };
+    
+    revalidateTag('wallet', 'default');
+    revalidateTag('transactions', 'default');
+    revalidatePath('/wallet', 'layout');
+    
+    return { 
+      success: true, 
+      data: result,
+      checkoutRequestId: result.checkoutRequestId,
+      responseCode: result.responseCode,
+      responseDescription: result.responseDescription
+    };
   } catch (error: any) {
-    return { success: false, error: error.response?.data?.message || error.message };
+    console.error('Payment initiation error:', error);
+    return { 
+      success: false, 
+      error: error.response?.data?.message || error.message || 'Payment initiation failed' 
+    };
   }
 }
 
@@ -30,10 +45,17 @@ export async function checkPaymentStatus(checkoutRequestId: string) {
       return { success: false, error: 'Unauthorized' };
     }
 
-    // This would need a status check endpoint
-    // For now, we'll just return success
-    return { success: true, data: { status: 'COMPLETED' } };
+    const result = await paymentApi.checkStatus(checkoutRequestId);
+    
+    if (result.status === 'COMPLETED') {
+      revalidateTag('wallet', 'default');
+      revalidateTag('transactions', 'default');
+      revalidatePath('/wallet', 'layout');
+    }
+    
+    return { success: true, data: result };
   } catch (error: any) {
+    console.error('Status check error:', error);
     return { success: false, error: error.response?.data?.message || error.message };
   }
 }
