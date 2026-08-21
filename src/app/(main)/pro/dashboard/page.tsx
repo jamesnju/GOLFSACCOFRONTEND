@@ -20,7 +20,7 @@ export default async function ProDashboardPage() {
       {/* Welcome Section */}
       <div>
         <h1 className="text-3xl font-bold text-text">
-          Welcome back, Pro {user?.firstName}! ⛳
+          Welcome back, Pro {user?.firstName}! 
         </h1>
         <p className="text-text/60 mt-1">Manage your professional golfing finances</p>
       </div>
@@ -63,10 +63,10 @@ export default async function ProDashboardPage() {
         <Card className="border-primary/20">
           <h3 className="text-lg font-bold mb-4">Quick Actions</h3>
           <div className="grid grid-cols-2 gap-3">
-            <QuickActionButton href="/savings/deposit" icon="💰" label="Deposit" />
-            <QuickActionButton href="/savings/withdraw" icon="🏦" label="Withdraw" />
-            <QuickActionButton href="/loans" icon="📝" label="Loans" />
-            <QuickActionButton href="/transactions" icon="📊" label="History" />
+            <QuickActionButton href="/wallent" icon="" label="Deposit" />
+            {/* <QuickActionButton href="/savings/w" icon="🏦" label="Withdraw" /> */}
+            <QuickActionButton href="/loans" icon="" label="Loans" />
+            <QuickActionButton href="/transactions" icon="" label="History" />
           </div>
         </Card>
 

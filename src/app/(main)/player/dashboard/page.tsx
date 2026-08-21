@@ -151,7 +151,7 @@ export default async function PlayerDashboardPage() {
             <h3 className="text-lg font-bold mb-4">Quick Actions</h3>
             <div className="grid grid-cols-2 gap-3">
               <QuickActionButton href="/wallet" icon="💰" label="Deposit" />
-              <QuickActionButton href="/wallet" icon="🏦" label="Withdraw" />
+              {/* <QuickActionButton href="/wallet" icon="🏦" label="Withdraw" /> */}
               {balance?.isEligibleForLoan && (
                 <QuickActionButton href="/loans/apply" icon="📝" label="Apply Loan" />
               )}

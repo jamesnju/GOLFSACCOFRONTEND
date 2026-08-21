@@ -286,13 +286,13 @@ export default function WalletPage() {
                   <span className="text-2xl">💰</span>
                   <span className="text-sm text-text">Deposit</span>
                 </button>
-                <button
+                {/* <button
                   onClick={() => setActiveTab('withdraw')}
                   className="flex flex-col items-center gap-2 p-4 rounded-lg bg-primary/10 hover:bg-primary/20 transition-all"
                 >
                   <span className="text-2xl">🏦</span>
                   <span className="text-sm text-text">Withdraw</span>
-                </button>
+                </button> */}
                 {balance?.isEligibleForLoan && (
                   <button
                     onClick={() => router.push('/loans')}
